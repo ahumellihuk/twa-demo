@@ -59,6 +59,19 @@
         #viewport-params-expand {
             top: 30px;
         }
+
+        #floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
     </style>
 </head>
 
@@ -91,6 +104,7 @@
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
     <div id="viewport-params-expand"></div>
+    <button id="floating-button" onclick="moveButton()">Click Me</button>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         // Init TWA
@@ -153,6 +167,18 @@
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
 
+        // Function to move floating button
+        function moveButton() {
+            const button = document.getElementById('floating-button');
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            const newLeft = Math.random() * (viewportWidth - buttonWidth);
+            const newTop = Math.random() * (viewportHeight - buttonHeight);
+            button.style.left = `${newLeft}px`;
+            button.style.top = `${newTop}px`;
+        }
     </script>
 
     <!-- Eruda is console for mobile browsers -->
